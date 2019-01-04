@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddScore"></activity>
+        <activity android:name=".AddScore" />
+        <activity android:name=".ScoreTesting"></activity>
     </application>
 
 </manifest>
