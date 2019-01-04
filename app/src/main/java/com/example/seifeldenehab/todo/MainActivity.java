@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         Log.e("asdsadsa","safsdfsd");
         int x=5;
+        Log.e("asdsadsa","safsdfsd");
+        int y=5;
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
