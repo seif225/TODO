@@ -2,9 +2,16 @@ package com.example.seifeldenehab.todo;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -22,32 +29,54 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.AbsListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
     private static final String TAG = "MainActivity";
     private FirebaseAuth.AuthStateListener fireStateListener;
     private SectionsPageAdapter mSectionsPageAdapter;
+
     private ViewPager mViewPager;
     private FirebaseAuth mAuth;
+    NavigationView navigationView;
+
+    private DrawerLayout mDrawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+final Intent i = new Intent(this,ScoreTesting.class);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(i);
+            }
+        });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+//Drawer
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+         navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         mAuth=FirebaseAuth.getInstance();
 
+
+//end of drawer code
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -72,6 +101,21 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+        // Drawer menu action
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         /*if (id == R.id.action_settings) {
             return true;
@@ -97,6 +142,12 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Sign UP","Sign out successful");
             mAuth.signOut();
                 break;}
+            //b3bs hena firebase :D
+                break;
+            case  R.id.chat_action:
+                Intent c = new Intent (this,ChatClass.class);
+                startActivity(c);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -107,12 +158,40 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Tab3Fragment(), "Ahmed");
         viewPager.setAdapter(adapter);
     }
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_add_score) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AddScore()).commit();
+        } else if (id == R.id.nav_chat) {
+                Intent iii=new Intent(this,ScoreTesting.class);
+                startActivity(iii);
+                Log.e("clicked","wlahy clicked");
+        } else if (id == R.id.nav_settings) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_sign_out) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
         mAuth.addAuthStateListener(fireStateListener);
     }
+}
 
     @Override
     protected void onPause() {
@@ -121,5 +200,3 @@ public class MainActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(fireStateListener);
         }
     }
-
-}

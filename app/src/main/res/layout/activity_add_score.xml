@@ -35,6 +35,7 @@
         android:textColor="#fefefe"
         android:textSize="20sp"
         android:layout_margin="20dp"
+        android:id="@+id/add"
 
 
         />
