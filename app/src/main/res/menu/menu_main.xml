@@ -12,4 +12,13 @@
         android:orderInCategory="100"
         android:title="@string/sign_out"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/chat_action"
+        android:orderInCategory="100"
+        android:title="@string/chat"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_chat_black_24dp"
+
+        />
+
 </menu>

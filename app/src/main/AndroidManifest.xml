@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddScore" />
-        <activity android:name=".ScoreTesting"></activity>
+        <activity android:name=".ScoreTesting" />
+        <activity android:name=".ChatClass"></activity>
     </application>
 
 </manifest>

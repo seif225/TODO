@@ -68,7 +68,7 @@ TextView scoreTv;
                         score=15;
 
                         break;
-                        }
+                            }
             }
 
             @Override
