@@ -3,6 +3,7 @@ package com.example.seifeldenehab.todo;
 public class Model {
     private String name,mail;
    private  int image,score;
+   public Model(){}
     public Model(String name, String mail, int score , int image){
         this.name=name;
         this.mail=mail;

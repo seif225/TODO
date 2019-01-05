@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
@@ -24,7 +26,9 @@ public class SignUp extends AppCompatActivity {
     private Button signUp;
     private Button signIn;//test delete
     private FirebaseAuth mAuth;
-    String email,pass;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    String email,pass,userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +48,13 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 email=eEmail.getText().toString();
                 pass=ePassword.getText().toString();
+                userName=eName.getText().toString();
                 createNewUser();
             }
         });
-        //test delete
+        //Database
+            firebaseDatabase=FirebaseDatabase.getInstance();
+            databaseReference=firebaseDatabase.getReference().child("Users");
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +74,7 @@ public class SignUp extends AppCompatActivity {
                 if(task.isSuccessful()){
                     FirebaseUser currentUser=mAuth.getCurrentUser();
                     Log.e("SignUp","Task Success");
+                    databaseReference.push().setValue(new Users(userName,email,pass));
                     Intent i=new Intent(SignUp.this,MainActivity.class);
                     startActivity(i);
                    // updateUI(currentUser);

@@ -5,7 +5,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:background="@drawable/sun"
+    android:background="@drawable/download"
     android:padding="16dp"
 
     >
