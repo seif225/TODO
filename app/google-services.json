@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "48203198305",
+    "firebase_url": "https://todo-b0023.firebaseio.com",
+    "project_id": "todo-b0023",
+    "storage_bucket": "todo-b0023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48203198305:android:7f27d9028e015b11",
+        "android_client_info": {
+          "package_name": "com.example.seifeldenehab.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48203198305-aqjlhbtelh52sag2vt9ebqnv2kag7v10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.seifeldenehab.todo",
+            "certificate_hash": "63d1e314292b048e31a0a2c631153f81762a4d5a"
+          }
+        },
+        {
+          "client_id": "48203198305-ud7ppq4mbc33d3qpjutj51ckh0fii894.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVPkY_V7gJM3nFjlVSBkG76m1D-odqJMI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48203198305-ud7ppq4mbc33d3qpjutj51ckh0fii894.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
